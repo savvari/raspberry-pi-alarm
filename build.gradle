@@ -1,0 +1,18 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+mainClassName = "com.sridhar.AlarmApplication"
+dependencies {
+    compile 'io.dropwizard:dropwizard-core:0.8.2'
+    compile fileTree(dir: 'lib', include: '*.jar')
+}
+
+repositories {
+    mavenCentral()
+}
+
+task server(type: JavaExec) {
+    main = mainClassName
+    classpath = sourceSets.main.runtimeClasspath
+    args 'server', './src/main/resources/config.yml'
+}
